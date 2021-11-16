@@ -50,8 +50,9 @@ export class TasksService {
     return true;
   }
 
-  deleteTask(id: number) {
+  async deleteTask(id: number): Promise<boolean> {
     this.tasks = this.tasks.filter(t => t.id != id);
+    return await this.saveTasksIntoStorage();
   }
 
   async getTasksFromStorage(): Promise<Task[]> {
